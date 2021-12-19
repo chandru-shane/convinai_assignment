@@ -1,0 +1,43 @@
+{% extends 'salesforce/base.html' %}
+{% block content %}
+
+<h1>Salesforce contacts data</h1>
+
+<br>
+<table class='table table-striped table-dark text-center'>
+    <thead>
+        <td>
+            <h3>Name</h3>
+        </td>
+
+        <td>
+            <h3>Account Id</h3>
+        </td>
+
+        <td>
+            <h3>Email</h3>
+        </td>
+
+        <td>
+            <h3>Phone</h3>
+        </td>
+
+        <td>
+            <h3>Mobile Phone</h3>
+        </td>
+
+    <thead>
+    <tbody>
+        {% for contact in contacts %}
+            <tr>
+                <td>{{contact.name}}</td>
+                <td>{{contact.account_id}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.phone}}</td>
+                <td>{{contact.mobile_phone}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+<table>
+
+{% endblock content %}

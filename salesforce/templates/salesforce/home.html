@@ -1,0 +1,32 @@
+{% extends 'salesforce/base.html' %}
+
+{% block content %}
+<h1 style="text-align: center;">SalesForce Integration Data</h1>
+<div class="card-group d-flex justify-content-center">
+    <div class="card text-white bg-success mb-3 " style="max-width:15rem; margin:5px;">
+
+        <div class="card-body ">
+          <h5 class="card-title" style="text-align:center;">Users </h5>
+          <h1 class="card-title" style="text-align:center;">{{ users }}</h1>
+        </div>
+      </div>
+
+
+      <div class="card text-white bg-success mb-3 " style="max-width: 15rem; margin:5px;">
+
+        <div class="card-body ">
+          <h5 class="card-title" style="text-align:center;">Accounts </h5>
+          <h1 class="card-title" style="text-align:center;">{{ accounts }}</h1>
+        </div>
+      </div>
+
+      <div class="card text-white bg-success mb-3 " style="max-width: 15rem; margin:5px;">
+
+        <div class="card-body ">
+          <h5 class="card-title" style="text-align:center;">Contacts </h5>
+          <h1 class="card-title" style="text-align:center;">{{ contacts }}</h1>
+        </div>
+      </div>
+</div>
+
+{% endblock content %}

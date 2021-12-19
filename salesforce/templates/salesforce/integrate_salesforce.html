@@ -1,0 +1,16 @@
+{% extends 'salesforce/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div>
+
+    <div class="card" style="width: 28rem; border: 0px;">
+        <h1>Integrate SalesForce</h1>
+        <form method='POST'>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button style="margin-top:10px" class='btn btn-success' type='submit'>Integrate</button>
+        </form>
+      </div>
+    
+</div>
+{% endblock content %}
