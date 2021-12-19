@@ -11,3 +11,17 @@
 #### Enter the credentials and wait for a minute to fetch data from salesforce and store to database
 #### After redirected to home page
 #### Checkout the nav tabs
+## Home Page
+![Screenshot Home Page](https://github.com/chandru-shane/convinai_assignment/blob/main/screenshots/01%20Home.png)
+
+## Integration Page
+![Screenshot Integrate Page](https://github.com/chandru-shane/convinai_assignment/blob/main/screenshots/02%20Integrate%20Salesforce.png)
+
+## Users List Page
+![Screenshot Integrate Page](https://github.com/chandru-shane/convinai_assignment/blob/main/screenshots/03%20Users.png)
+
+## Accounts List Page
+![Screenshot Integrate Page](https://github.com/chandru-shane/convinai_assignment/blob/main/screenshots/04%20Accounts.png)
+
+## Contacts List Page
+![Screenshot Integrate Page](https://github.com/chandru-shane/convinai_assignment/blob/main/screenshots/05%20Contacts.png)
