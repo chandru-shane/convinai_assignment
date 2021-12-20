@@ -42,11 +42,12 @@ class SalesForceContact(models.Model):
     firstname = models.CharField(max_length=128, null=True, blank=True)
     lastname = models.CharField(max_length=128, null=True, blank=True)
     name = models.CharField(max_length=128, null=True, blank=True)
-    account_id = models.CharField(max_length=128, null=True, blank=True)
+    # account_id = models.CharField(max_length=128, null=True, blank=True)
     phone = models.CharField(max_length=32, null=True, blank=True)
     email = models.EmailField(max_length=128, null=True, blank=True)
     mobile_phone = models.CharField(max_length=32, null=True, blank=True)
     mailing_address = models.TextField(null=True, blank=True)
+    account = models.ForeignKey(SalesForceAccount,on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.salesforce_id} | {self.name}"
+        return f"{self.account} | {self.name}"

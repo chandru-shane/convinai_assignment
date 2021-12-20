@@ -1,4 +1,5 @@
 import requests
+from django.core import exceptions
 from . import models
 from . import utils
 
@@ -97,6 +98,54 @@ class SalesForce:
        
         return records
 
+    def is_exist_if_return(self, model, salesforce_id):
+        
+        """
+        models: object
+            Database model class
+        salesforce_id: str
+            salesforce id is the unique thing in the data
+        
+        if query exists return the account object or return False
+        """
+        try:
+            account = model.objects.get(salesforce_id=salesforce_id)
+        except exceptions.ObjectDoesNotExist:
+            return False
+        else:
+            print(account)
+            return account
+
+
+
+    def _store_contact(self, data):
+        """
+        data: dict
+            Data that have to be stored in datase
+        """
+        account = False
+        if data.get('AccountId', False):
+            account = self.is_exist_if_return(
+                models.SalesForceAccount,data.get('AccountId')
+            )
+        
+        try:
+            obj, created = models.SalesForceContact.objects.get_or_create(
+            salesforce_id=data.get('Id')
+            )
+            if created:
+                for key, value in utils.CONTACT_FIELDS.items():
+                    setattr(obj, value, data.get(key))
+                # mapping the relationship with account 
+                if account:
+                    obj.account = account
+                obj.save()
+        except Exception as ex:
+            print(ex)
+
+        return obj
+        
+
     def _parse_create(self, model, data, fields):
         """
             This is more generic function.
@@ -112,17 +161,20 @@ class SalesForce:
                 Id then that will be retirve and return or 
                 create new one and retrun.
         """
-        try:
-            obj, created = model.objects.get_or_create(
-            salesforce_id=data.get('Id')
-            )
+        if model != models.SalesForceContact:
+            try:
+                obj, created = model.objects.get_or_create(
+                salesforce_id=data.get('Id')
+                )
 
-            if created:
-                for key, value in fields.items():
-                    setattr(obj, value, data.get(key))
-                obj.save()
-        except Exception as ex:
-            print(ex)
+                if created:
+                    for key, value in fields.items():
+                        setattr(obj, value, data.get(key))
+                    obj.save()
+            except Exception as ex:
+                print(ex)
+        else:
+            obj = self._store_contact(data)
 
         return obj
     
@@ -168,5 +220,3 @@ class SalesForce:
         all_records = self.fetch_data()
         self.store_to_databases(all_records)
         return all_records
-    
-    
